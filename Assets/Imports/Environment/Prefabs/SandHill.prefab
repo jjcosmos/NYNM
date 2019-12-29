@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7244127593559719573}
   - component: {fileID: 6588197372586340199}
   - component: {fileID: 9050033790136197377}
+  - component: {fileID: -8120407264333303070}
   m_Layer: 0
   m_Name: SandHill
   m_TagString: Untagged
@@ -94,3 +95,15 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 5950539816433724629, guid: 0e1e364beab58734db075c08c7983f72, type: 3}
+--- !u!114 &-8120407264333303070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4584022404025562850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 107fb5f00ddefcf43ad621d5f5b6eee4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
