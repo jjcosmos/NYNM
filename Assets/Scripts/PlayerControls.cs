@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerControls : MonoBehaviour
 {
@@ -195,5 +196,11 @@ public class PlayerControls : MonoBehaviour
     {
         if(RB.velocity.y < .1f)
             hitParticles.Play();
+    }
+
+    private IEnumerator LoadShop()
+    {
+        yield return new WaitForSeconds(5f);
+        SceneManager.LoadScene(1);
     }
 }

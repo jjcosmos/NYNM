@@ -20,7 +20,7 @@ public class MutationManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-        activeMutation = possibleMutations[Random.Range(0, possibleMutations.Count)];
+        
     }
     void Start()
     {
@@ -30,7 +30,7 @@ public class MutationManager : MonoBehaviour
 
     public void RerollMutation()
     {
-
+        activeMutation = possibleMutations[Random.Range(0, possibleMutations.Count)];
     }
 
     // Update is called once per frame

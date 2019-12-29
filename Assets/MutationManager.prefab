@@ -51,7 +51,7 @@ MonoBehaviour:
   - MutName: Polarized
     MutImage: {fileID: 21300000, guid: 8dbf5af1ec1668347aa3947cb622874c, type: 3}
     mutIndex: 1
-    MutDescription: Somehow, relics are pulled towards you when approached.
+    MutDescription: Relics are pulled towards you when approached.
   - MutName: Eco Unfriendly
     MutImage: {fileID: 21300000, guid: 8dbf5af1ec1668347aa3947cb622874c, type: 3}
     mutIndex: 2
