@@ -5,8 +5,8 @@ using UnityEngine;
 public class FollowCam : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] Transform target;
-    [SerializeField] Transform lookTarget;
+    [SerializeField] public Transform target;
+    [SerializeField] public Transform lookTarget;
     [SerializeField] Vector3 offset;
     
     public float smoothTime = 0.01F;

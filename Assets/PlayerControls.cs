@@ -16,11 +16,13 @@ public class PlayerControls : MonoBehaviour
     Quaternion rightRot;
     float yVelocity;
     int mask;
+    FollowCam cam;
 
     private bool grounded;
     Quaternion loggedBaseRot;
     [SerializeField] ParticleSystem hitParticles;
     [SerializeField] ParticleSystem trailParticles;
+    [SerializeField] GameObject explosion;
     void Start()
     {
         currentThrust = 0;
@@ -31,6 +33,7 @@ public class PlayerControls : MonoBehaviour
         mask = LayerMask.GetMask("Ground");
         yVelocity = 1;
         loggedBaseRot = Quaternion.identity;
+        cam = Camera.main.GetComponent<FollowCam>();
     }
 
     // Update is called once per frame
@@ -111,8 +114,14 @@ public class PlayerControls : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(!other.CompareTag("LoadZone") )
-            Debug.Log(other.name + "hit");
+        if (!other.CompareTag("LoadZone"))
+        {
+            //Debug.Log(other.name + "hit");
+            PlayerExplosion splode = Instantiate(explosion, transform.position, Quaternion.identity).GetComponent<PlayerExplosion>();
+            cam.lookTarget = splode.transform.GetChild(1);
+            this.gameObject.SetActive(false);
+            
+        }
     }
     private bool isGrounded()
     {
@@ -120,7 +129,7 @@ public class PlayerControls : MonoBehaviour
         Collider[] colliders = Physics.OverlapSphere(transform.position, 1f, mask);
         if(colliders.Length > 0)
         {
-            Debug.Log("True");
+            //Debug.Log("True");
             return true;
         }
         return false;
