@@ -16,15 +16,8 @@ public class ChunkGenerator : MonoBehaviour
     [SerializeField] List<Chunk> Chunks;
     private void Awake()
     {
-        DontDestroyOnLoad(this);
-        if(_instance == null)
-        {
-            _instance = this;
-        }
-        if(_instance != this)
-        {
-            Destroy(this);
-        }
+        //DontDestroyOnLoad(this);
+        _instance = this;
     }
 
     public void UpdateCurrentChunk()

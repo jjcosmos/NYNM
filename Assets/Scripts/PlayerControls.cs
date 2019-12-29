@@ -23,8 +23,34 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] ParticleSystem hitParticles;
     [SerializeField] ParticleSystem trailParticles;
     [SerializeField] GameObject explosion;
+
+
+    private float mutJumpMult;
+    private bool yeetsTrees;
+    private bool yeetsRocks;
     void Start()
     {
+        int currentmutIndex = MutationManager._instance.activeMutation.mutIndex;
+        if (currentmutIndex == 0)
+        {
+            mutJumpMult = 1.6f;
+        }
+        else
+        {
+            mutJumpMult = 1f;
+        }
+
+        if(currentmutIndex == 2)
+        {
+            yeetsTrees = true;
+        }
+        else { yeetsTrees = false; }
+
+        if(currentmutIndex == 3) { yeetsRocks = true; }
+        else { yeetsRocks = false; }
+
+
+
         currentThrust = 0;
         RB = GetComponent<Rigidbody>();
 
@@ -45,7 +71,7 @@ public class PlayerControls : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && grounded)
         {
-            RB.AddForce(new Vector3(0, 1, 0) * jumpForce);
+            RB.AddForce(new Vector3(0, 1, 0) * jumpForce * mutJumpMult);
         }
 
 
@@ -114,9 +140,39 @@ public class PlayerControls : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("LoadZone"))
+
+        if (yeetsRocks)
         {
-            //Debug.Log(other.name + "hit");
+            if (other.CompareTag("Rock"))
+            {
+                Rigidbody rb = other.GetComponent<Rigidbody>();
+                rb.gameObject.layer = 10;
+                rb.isKinematic = false;
+                
+                float rand = UnityEngine.Random.Range(-1, 1);
+                rb.AddForce( (Vector3.up + new Vector3(rand,0,0)) * 1000 );
+                rb.AddTorque(UnityEngine.Random.insideUnitSphere * 100000);
+            }
+        }
+
+        if (yeetsTrees)
+        {
+            if (other.CompareTag("Tree"))
+            {
+                Rigidbody rb = other.GetComponent<Rigidbody>();
+                rb.gameObject.layer = 10;
+                rb.isKinematic = false;
+
+                float rand = UnityEngine.Random.Range(-1, 1);
+                rb.AddForce((Vector3.up + Vector3.forward + new Vector3(rand, 0, 0)) * 1000);
+                rb.AddTorque(UnityEngine.Random.insideUnitSphere * 100000);
+            }
+        }
+
+
+        if (!other.CompareTag("LoadZone") && (!yeetsRocks || !other.CompareTag("Rock")) && (!yeetsTrees || !other.CompareTag("Tree")))
+        {
+            Debug.Log(other.name + "hit");
             PlayerExplosion splode = Instantiate(explosion, transform.position, Quaternion.identity).GetComponent<PlayerExplosion>();
             cam.lookTarget = splode.transform.GetChild(1);
             this.gameObject.SetActive(false);
