@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7735717842807230278}
   - component: {fileID: -7847675166439250332}
   - component: {fileID: 6451102082621265389}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: TerrainTest
   m_TagString: LoadZone
   m_Icon: {fileID: 0}

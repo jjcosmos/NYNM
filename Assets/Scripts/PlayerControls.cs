@@ -19,7 +19,7 @@ public class PlayerControls : MonoBehaviour
     int mask;
     FollowCam cam;
 
-    private bool grounded;
+    public bool grounded;
     Quaternion loggedBaseRot;
     [SerializeField] ParticleSystem hitParticles;
     [SerializeField] ParticleSystem trailParticles;
@@ -183,10 +183,11 @@ public class PlayerControls : MonoBehaviour
     private bool isGrounded()
     {
 
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 1f, mask);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, .1f, mask);
+        
         if(colliders.Length > 0)
         {
-            //Debug.Log("True");
+            Debug.Log(colliders[0].name);
             return true;
         }
         return false;
@@ -198,9 +199,5 @@ public class PlayerControls : MonoBehaviour
             hitParticles.Play();
     }
 
-    private IEnumerator LoadShop()
-    {
-        yield return new WaitForSeconds(5f);
-        SceneManager.LoadScene(1);
-    }
+    
 }

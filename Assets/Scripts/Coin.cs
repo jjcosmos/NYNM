@@ -23,6 +23,7 @@ public class Coin : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             //Debug.Log("triggerenter " + other.name);
+            ScoreKeeper.Score++;
             Destroy(this.gameObject);
         }
         
