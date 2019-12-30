@@ -25,7 +25,9 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] ParticleSystem trailParticles;
     [SerializeField] GameObject explosion;
 
-
+    [SerializeField] AudioSource BoardNoises;
+    
+    [SerializeField] AudioClip BoardLand;
     private float mutJumpMult;
     private bool yeetsTrees;
     private bool yeetsRocks;
@@ -128,10 +130,12 @@ public class PlayerControls : MonoBehaviour
         //Debug.Log(RB.velocity.x);
         if (grounded)
         {
+            BoardNoises.volume = 1;
             trailParticles.Play();
         }
         else
         {
+            BoardNoises.volume = .1f;
             trailParticles.Stop();
         }
 
@@ -195,8 +199,11 @@ public class PlayerControls : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(RB.velocity.y < .1f)
+        if (RB.velocity.y < .2f)
+        {
             hitParticles.Play();
+            BoardNoises.PlayOneShot(BoardLand,.1f);
+        }
     }
 
     

@@ -14,8 +14,11 @@ public class MenuArrow : MonoBehaviour
 
     [SerializeField] int titleScene;
     [SerializeField] int playScene;
+
+    private AudioSource source;
     void Start()
     {
+        source = GetComponent<AudioSource>();
         buttonIndex = 1;
         text = GetComponentInChildren<TextMeshPro>();
     }
@@ -29,6 +32,7 @@ public class MenuArrow : MonoBehaviour
             {
                 buttonIndex--;
             }
+            source.PlayOneShot(source.clip);
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
@@ -36,6 +40,7 @@ public class MenuArrow : MonoBehaviour
             {
                 buttonIndex++;
             }
+            source.PlayOneShot(source.clip);
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -54,6 +59,7 @@ public class MenuArrow : MonoBehaviour
                 default:
                     break;
             }
+            source.PlayOneShot(source.clip);
         }
 
         transform.position = Buttons[buttonIndex].position;

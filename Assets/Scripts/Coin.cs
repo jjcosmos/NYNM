@@ -24,6 +24,7 @@ public class Coin : MonoBehaviour
         {
             //Debug.Log("triggerenter " + other.name);
             ScoreKeeper.Score++;
+            ScoreKeeper._instance.PlaySound();
             Destroy(this.gameObject);
         }
         
